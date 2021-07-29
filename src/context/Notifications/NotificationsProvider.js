@@ -1,12 +1,12 @@
 /* eslint-disable default-case */
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
-import { ReactComponent as Close } from "../assets/close.svg";
+import { ReactComponent as Close } from "../../assets/close.svg";
 import styles from "./NotificationsProvider.module.css";
 import { getAutoAnimation, getCssValues, getLeaveAnimation, getManualAnimation } from "./utility";
 
 const Notification = (props) => {
-	const { id, type, content, position, deleteNotification, duration, colors } = props;
+	const { id, type, content, position, deleteNotification, duration } = props;
 	const notificationRef = useRef();
 
 	useLayoutEffect(() => {
@@ -31,10 +31,10 @@ const Notification = (props) => {
 
 	return (
 		<div
+			style={{ backgroundColor: `var(--${type})` }}
 			className={`${styles.Notification} ${styles[type]}`}
 			onClick={closeNotification}
-			ref={notificationRef}
-			style={{ backgroundColor: colors ? colors[type] : `var(--${type})` }}>
+			ref={notificationRef}>
 			<div className={styles.wrapper}>
 				{type !== "info" ? <h1 className={styles.title}>{type}</h1> : null}
 				<p className={styles.content}>{content}</p>
@@ -49,26 +49,7 @@ const Notification = (props) => {
 const notificationsContext = createContext();
 const { Provider: Notifications } = notificationsContext;
 
-const settings = {
-	order: "", // optional, defaults to "top"
-
-	colors: {
-		success: "", // optional, defaults to "#02c39a"
-		error: "", // optional, defaults to "#f94144"
-		warning: "", // optional, defaults to "#ffb703"
-		info: "", // optional, defaults to "#00509d"
-	},
-};
-
-const notifyParameters = {
-	type: "", // optional, defaults to "info"
-	content: "", // optional, defaults to ""
-	position: "", // optional, defaults to "tl"
-	duration: "", // optional, defaults to "4000"
-};
-
 const NotificationsProvider = (props) => {
-	let { order = "bottom", colors } = props;
 	const [isMobile, setIsMobile] = useState(false);
 	const [notifications, setNotifications] = useState({
 		tl: [],
@@ -82,6 +63,10 @@ const NotificationsProvider = (props) => {
 		mc: [],
 		mbc: [],
 	});
+
+	const _clearAll = () => {
+		setNotifications({ tl: [], tc: [], tr: [], c: [], bl: [], bc: [], br: [], mtc: [], mc: [], mbc: [] });
+	};
 
 	const getMobileArrayId = (position) => {
 		if (position[0] === "t") return "mtc";
@@ -112,20 +97,21 @@ const NotificationsProvider = (props) => {
 
 	const notify = (type = "info", content = "", position = "tc", duration = 4000) => {
 		const id = v4();
-		const object = { id, type, content, position, deleteNotification, duration, colors };
+		const object = { id, type, content, position, deleteNotification, duration };
 		const mobileArrayId = getMobileArrayId(position);
 
 		setNotifications((state) => {
 			const array = [...state[position]];
 			const mobileArray = [...state[mobileArrayId]];
-			order === "top" ? array.unshift(object) : array.push(object);
-			order === "top" ? mobileArray.unshift(object) : mobileArray.push(object);
+			array.push(object);
+			mobileArray.push(object);
 			return { ...state, [position]: array, [mobileArrayId]: mobileArray };
 		});
 	};
 
 	const value = {
 		notify,
+		_clearAll,
 	};
 
 	return (

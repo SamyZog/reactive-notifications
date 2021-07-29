@@ -1,4 +1,9 @@
 .NotificationsContainer {
+	--success: #02c39a;
+	--error: #f94144;
+	--warning: #ffb703;
+	--info: #00509d;
+	color: white;
 	position: fixed;
 	height: 100vh;
 	width: 100vw;
@@ -18,10 +23,6 @@
 }
 
 .Notification {
-	--success: #02c39a;
-	--error: #f94144;
-	--warning: #ffb703;
-	--info: #00509d;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

@@ -50,7 +50,6 @@ export const getAutoAnimation = (duration, ...cssValues) => {
 
 export const getLeaveAnimation = (...cssValues) => {
 	const [height, margin] = cssValues;
-	console.log(margin);
 
 	return {
 		keyframes: {

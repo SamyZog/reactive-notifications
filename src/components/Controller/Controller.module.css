@@ -1,0 +1,57 @@
+.Controller {
+	color: #212529;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 0;
+}
+
+.demo {
+	width: 50vw;
+	min-width: 80vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: justify;
+	gap: 20px;
+}
+
+.info {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.info p {
+	line-height: 2;
+}
+
+.info .buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	padding-top: 20px;
+}
+
+.info .buttons button {
+	color: #edf6f9;
+	border: none;
+	cursor: pointer;
+	padding: 10px 30px;
+	background-color: #212529;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: inherit;
+}
+
+code {
+	font-family: "JetBrains Mono", monospace;
+	background-color: gainsboro;
+	padding: 0 2px;
+	color: #212529;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import NotificationsProvider from "./Notifications/NotificationsProvider";
+import NotificationsProvider from "./context/Notifications/NotificationsProvider";
 import "./styles.css";
 
 ReactDOM.render(
