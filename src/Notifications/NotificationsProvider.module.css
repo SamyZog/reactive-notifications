@@ -1,0 +1,167 @@
+.NotificationsContainer {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	pointer-events: none;
+	z-index: 10000;
+	box-sizing: border-box !important;
+}
+
+.NotificationsContainer * {
+	box-sizing: border-box !important;
+}
+
+.NotificationsContainer > * {
+	position: absolute;
+	pointer-events: inherit;
+	padding: 20px;
+}
+
+.Notification {
+	--success: #02c39a;
+	--error: #f94144;
+	--warning: #ffb703;
+	--info: #00509d;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	user-select: none;
+	opacity: 0;
+	pointer-events: auto;
+	cursor: pointer;
+	border-radius: 2.5px;
+	min-width: 250px;
+	width: 25vw;
+	overflow: hidden;
+	text-align: left;
+	line-height: 1;
+	margin: 10px 0;
+}
+
+.Notification::before {
+	content: "";
+	position: absolute;
+	width: 2.5%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.wrapper {
+	padding: 10px 20px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 10px;
+}
+
+.title {
+	font-size: 15px;
+	text-transform: capitalize;
+}
+
+.content {
+	line-height: 1.25;
+}
+
+.iconWrapper {
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 10px 10px;
+}
+
+svg {
+	fill: currentColor;
+	height: 7.5px;
+	width: 7.5px;
+}
+
+.top {
+	top: 0;
+}
+
+.top > * {
+	margin: 0 0 10px;
+}
+
+.centered {
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.centered > * {
+	margin: 0 0 10px 0;
+}
+
+.bottom {
+	bottom: 0;
+}
+
+.bottom > * {
+	margin: 10px 0 0;
+}
+
+.left {
+	left: 0;
+}
+
+.right {
+	right: 0;
+}
+
+.center {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.mobileTop,
+.mobileBottom,
+.mobileCentered {
+	display: none;
+}
+
+@media screen and (max-width: 850px) {
+	.top,
+	.centered,
+	.bottom {
+		display: none;
+	}
+
+	.mobileTop,
+	.mobileBottom,
+	.mobileCentered {
+		display: block;
+	}
+
+	.Notification {
+		width: 40vw;
+		border-radius: 0;
+		margin: 0;
+	}
+
+	.mobileTop,
+	.mobileBottom {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.mobileTop {
+		top: 0;
+	}
+
+	.mobileBottom {
+		bottom: 0;
+	}
+
+	.mobileCentered {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}

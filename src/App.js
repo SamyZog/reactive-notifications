@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useNotifications } from "./Notifications/NotificationsProvider";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const { notify } = useNotifications();
+
+	return (
+		<>
+			<button
+				onClick={() => {
+					notify();
+				}}>
+				TOP LEFT
+			</button>
+			<button
+				onClick={() => {
+					notify("warning", "hello world, my name is Samy", "tr", "infinite");
+				}}>
+				TOP RIGHT
+			</button>
+			<button
+				onClick={() => {
+					notify(
+						"info",
+						"hello world, my name is Samy, I am a front end developer from saratov russia",
+						"c",
+						"infinite",
+					);
+				}}>
+				CENTER
+			</button>
+			<button
+				onClick={() => {
+					notify("error", "hello world, my name is Samy", "bl", "infinite");
+				}}>
+				BOTTOM
+			</button>
+		</>
+	);
 }
 
 export default App;
