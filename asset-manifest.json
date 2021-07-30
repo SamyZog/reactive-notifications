@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/reactive-notifications/static/css/main.2b88ca71.chunk.css",
-    "main.js": "/reactive-notifications/static/js/main.3b798189.chunk.js",
-    "main.js.map": "/reactive-notifications/static/js/main.3b798189.chunk.js.map",
+    "main.css": "/reactive-notifications/static/css/main.3293be33.chunk.css",
+    "main.js": "/reactive-notifications/static/js/main.3750942a.chunk.js",
+    "main.js.map": "/reactive-notifications/static/js/main.3750942a.chunk.js.map",
     "runtime-main.js": "/reactive-notifications/static/js/runtime-main.79d425cd.js",
     "runtime-main.js.map": "/reactive-notifications/static/js/runtime-main.79d425cd.js.map",
-    "static/js/2.e283f896.chunk.js": "/reactive-notifications/static/js/2.e283f896.chunk.js",
-    "static/js/2.e283f896.chunk.js.map": "/reactive-notifications/static/js/2.e283f896.chunk.js.map",
+    "static/js/2.d92181c8.chunk.js": "/reactive-notifications/static/js/2.d92181c8.chunk.js",
+    "static/js/2.d92181c8.chunk.js.map": "/reactive-notifications/static/js/2.d92181c8.chunk.js.map",
     "index.html": "/reactive-notifications/index.html",
-    "static/css/main.2b88ca71.chunk.css.map": "/reactive-notifications/static/css/main.2b88ca71.chunk.css.map",
-    "static/js/2.e283f896.chunk.js.LICENSE.txt": "/reactive-notifications/static/js/2.e283f896.chunk.js.LICENSE.txt",
+    "static/css/main.3293be33.chunk.css.map": "/reactive-notifications/static/css/main.3293be33.chunk.css.map",
+    "static/js/2.d92181c8.chunk.js.LICENSE.txt": "/reactive-notifications/static/js/2.d92181c8.chunk.js.LICENSE.txt",
     "static/media/close.ee2dd8dd.svg": "/reactive-notifications/static/media/close.ee2dd8dd.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.79d425cd.js",
-    "static/js/2.e283f896.chunk.js",
-    "static/css/main.2b88ca71.chunk.css",
-    "static/js/main.3b798189.chunk.js"
+    "static/js/2.d92181c8.chunk.js",
+    "static/css/main.3293be33.chunk.css",
+    "static/js/main.3750942a.chunk.js"
   ]
 }
