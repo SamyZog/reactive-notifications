@@ -9,11 +9,11 @@
 	width: 100vw;
 	pointer-events: none;
 	z-index: 10000;
-	box-sizing: border-box !important;
+	box-sizing: border-box;
 }
 
 .NotificationsContainer * {
-	box-sizing: border-box !important;
+	box-sizing: inherit;
 }
 
 .NotificationsContainer > * {

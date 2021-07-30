@@ -45,25 +45,22 @@ const Controller = (props) => {
 		if (text === "error") return error[getRandomNum(error.length)];
 		if (text === "warning") return warning[getRandomNum(warning.length)];
 		if (text === "info") return info[getRandomNum(info.length)];
-		if (text === undefined) {
-			const concatArray = [...success, ...error, ...warning, ...info];
-			return concatArray[getRandomNum(concatArray.length)];
-		}
 	};
+
 	const getRandomPosition = () => positions[getRandomNum(positions.length)];
 
 	return (
 		<main className={styles.Controller}>
 			<section className={styles.demo}>
-				<h1>reactive-notifications</h1>
+				<h1>
+					<a href="https://github.com/SamyZog/reactive-notifications" target="_blank" rel="noreferrer">
+						reactive-notifications
+					</a>
+				</h1>
 				<div className={styles.info}>
 					<p>
 						This is a small notifications library that provides responsive universal notifications to any{" "}
 						<code>React</code> app <code>v16.8.0</code> or above.
-					</p>
-					<p>
-						To create a notification, you call the <code>notify</code> function that is provided by the{" "}
-						<code>NotificationsProvider</code> using the <code>useNotifications</code> hook.
 					</p>
 					<div>
 						<p>To remove a notification manually, simply click or tap on it.</p>
@@ -71,15 +68,8 @@ const Controller = (props) => {
 							<button onClick={_clearAll}>clear all</button>
 						</div>
 					</div>
-					<p>
-						The <code>notify</code> function takes in 4 arguments:{" "}
-						<code>notify(type, content, position, duration)</code>
-					</p>
 					<div>
-						<p>
-							-<code>type</code>: string value of either <code>'success'</code>, <code>'error'</code>,{" "}
-							<code>'warning'</code> or <code>'info'</code>. Defaults to <code>'info'</code>.
-						</p>
+						<p>TYPES</p>
 						<div className={styles.buttons}>
 							<button
 								onClick={() => {
@@ -116,19 +106,7 @@ const Controller = (props) => {
 						</div>
 					</div>
 					<div>
-						<p>
-							-<code>content</code>: string text value to display in the notification. Defaults to an
-							empty string <code>''</code>.
-						</p>
-					</div>
-					<div>
-						<p>
-							-<code>position</code>: string value of either <code>'tl'</code> (top left),{" "}
-							<code>'tc'</code> (top center), <code>'tr'</code> (top right), <code>'c'</code> (center),{" "}
-							<code>'bl'</code> (bottom left), <code>'bc'</code> (bottom center) or <code>'br'</code>{" "}
-							(bottom right), which defines where each notification should appear on the screen. On small
-							screens notifications will be grouped into 3 containers, top, center and bottom.
-						</p>
+						<p>POSITION</p>
 						<div className={styles.buttons}>
 							<button
 								onClick={() => {
@@ -189,12 +167,7 @@ const Controller = (props) => {
 						</div>
 					</div>
 					<div>
-						<p>
-							-<code>duration</code>: integer representing time in milliseconds or the string keyword{" "}
-							<code>'infinite'</code>, by default each notification is automatically cleared after 4
-							seconds (4000ms), by setting the <code>duration</code> to <code>'infinite'</code> the
-							notification will persist until closed manually.
-						</p>
+						<p>DURATION</p>
 						<div className={styles.buttons}>
 							<button
 								onClick={() => {

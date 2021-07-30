@@ -3,7 +3,16 @@ import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState
 import { v4 } from "uuid";
 import { ReactComponent as Close } from "../../assets/close.svg";
 import styles from "./NotificationsProvider.module.css";
-import { getAutoAnimation, getCssValues, getLeaveAnimation, getManualAnimation } from "./utility";
+import {
+	contentError,
+	durationError,
+	getAutoAnimation,
+	getCssValues,
+	getLeaveAnimation,
+	getManualAnimation,
+	positionError,
+	typeError,
+} from "./utility";
 
 const Notification = (props) => {
 	const { id, type, content, position, deleteNotification, duration } = props;
@@ -96,6 +105,31 @@ const NotificationsProvider = (props) => {
 	};
 
 	const notify = (type = "info", content = "", position = "tc", duration = 4000) => {
+		try {
+			typeError(type);
+		} catch (error) {
+			console.warn(error);
+			type = "info";
+		}
+		try {
+			contentError(content);
+		} catch (error) {
+			console.warn(error);
+			content = "";
+		}
+		try {
+			positionError(position);
+		} catch (error) {
+			console.warn(error);
+			position = "tc";
+		}
+		try {
+			durationError(duration);
+		} catch (error) {
+			console.warn(error);
+			duration = 4000;
+		}
+
 		const id = v4();
 		const object = { id, type, content, position, deleteNotification, duration };
 		const mobileArrayId = getMobileArrayId(position);

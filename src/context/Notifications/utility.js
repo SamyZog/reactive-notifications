@@ -1,13 +1,9 @@
 // defaults
-export const ORDER = "top";
-export const POSITION = "c";
+export const TYPE = "info";
+export const CONTENT = "";
+export const POSITION = "tc";
 export const DURATION = 4000;
-export const MINIMUM_DURATION = 2000;
 export const DURATION_MIDPOINT = 300;
-export const SUCCESS = "success";
-export const ERROR = "error";
-export const WARNING = "warning";
-export const INFO = "info";
 
 export const getManualAnimation = (...cssValues) => {
 	const [height, margin] = cssValues;
@@ -61,4 +57,44 @@ export const getLeaveAnimation = (...cssValues) => {
 			duration: DURATION_MIDPOINT,
 		},
 	};
+};
+
+export const typeError = (type) => {
+	if (type !== "success" && type !== "error" && type !== "warning" && type !== "info") {
+		throw new Error(
+			`${type} is not a valid value for the 'type' argument, the default value of 'info' is applied.`,
+		);
+	}
+};
+
+export const contentError = (content) => {
+	if (typeof content !== "string") {
+		throw new Error(
+			`${content} is not a valid value for the 'content' argument, the default value of '' (empty string) is applied.`,
+		);
+	}
+};
+
+export const positionError = (position) => {
+	if (
+		position !== "tl" &&
+		position !== "tc" &&
+		position !== "tr" &&
+		position !== "c" &&
+		position !== "bl" &&
+		position !== "bc" &&
+		position !== "br"
+	) {
+		throw new Error(
+			`${position} is not a valid value for the 'position' argument, the default value of 'tc' is applied.`,
+		);
+	}
+};
+
+export const durationError = (duration) => {
+	if (duration !== "infinite" && isNaN(duration)) {
+		throw new Error(
+			`${duration} is not a valid value for the 'duration' argument, the default value of 4000 is applied.`,
+		);
+	}
 };
