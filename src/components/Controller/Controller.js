@@ -59,11 +59,11 @@ const Controller = (props) => {
 				</h1>
 				<div className={styles.info}>
 					<p>
-						This is a small notifications library that provides responsive universal notifications to any{" "}
+						This is a small notifications library that provides beautiful, simple and responsive notifications to any{" "}
 						<code>React</code> app <code>v16.8.0</code> or above.
 					</p>
 					<div>
-						<p>To remove a notification manually, simply click or tap on it.</p>
+						<p>To remove a notification manually, simply click, swipe or tap on it.</p>
 						<div className={styles.buttons}>
 							<button onClick={_clearAll}>clear all</button>
 						</div>
