@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Index
 
-## Available Scripts
+- [Title](#title)
+- [Demo](#demo)
+- [Hosting](#host)
+- [Motivation](#motivation)
+- [Development phase](#dev-phase)
+- [Remarks](#remarks)
+- [Tech Stack / Dependencies](#deps)
+- [Features](#features)
+- [Run locally](#run)
+- [Authors](#authors)
 
-In the project directory, you can run:
+<h2 id="title">Kinowiki</h2>
 
-### `npm start`
+This is a small project built on top of the [MovieDB](https://www.themoviedb.org/documentation/api) API using [NextJS](https://nextjs.org/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It is a web app that lets users search and find movies or actors, lookup similar movies to the ones searched for and view a person's filmography.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h2 id="demo">Demo</h2>
 
-### `npm test`
+[KinoWIKI](https://kinowiki.vercel.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h2 id="host">Hosting</h2>
 
-### `npm run build`
+This web app is hosted on [Vercel](https://vercel.com/)
+  
+<h2 id="motivation">Motivation</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This is my first full fledged project since I started learning front-end development.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+It is made as a potfolio project to showcase to recruiters.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h2 id="dev-phase">Development phase</h2>
 
-### `npm run eject`
+This was not a particularily difficult project to create.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I used a combination of SSG, SSR and ISR to create the different pages and components, also used SWR which is a great tool to fetch and cache data in NextJS applications.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The most time consuming aspect of the project was figuring out the file structure, maintinaining component re-usability and applying styling/responsiveness.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Concerning the app's functionality and logic, it was pretty straight-forward in implementation. By leveraging the SSR, SSG and ISR and the MovieDB API coupled with SWR's automatic request caching, it was an overall pleasant experience and I enjoyed my time working on it.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<h2 id="remarks">Remarks</h2>
 
-## Learn More
+Some API endpoints and queries do not provide localized responses, this is why some movie titles and descriptions display in English regardless of chosen locale.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<h2 id="deps">Tech Stack / Dependencies</h2>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [NextJS](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Sass](https://sass-lang.com/)
+- [Axios](https://github.com/axios/axios)
+- [SWR](https://swr.vercel.app/)
+- [uuid](https://www.npmjs.com/package/uuid)
+- [SVGR](https://react-svgr.com/)
 
-### Code Splitting
+  
+<h2 id="features">Features</h2>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Light/dark modes, persisted on page reloads
+- Display language toggle with locale persistance on page reloads
+- Search functionality (movies, actors)
+- Pagination for movie search results (the link to the paginated results page is at the bottom of to the search result list)
+- Custom 404 page
+- Movies slider (top 10 trending movies)
+- Responsive design (grid, flexbox)
+- Sorting movies by year, genre, popularity and alphabetically   
 
-### Analyzing the Bundle Size
+<h2 id="run">Run Locally</h2>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To run the project locally you have to provide your own [MovieDB](https://www.themoviedb.org/documentation/api) API key.
 
-### Making a Progressive Web App
+Clone the project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+  git clone https://github.com/SamyZog/kinowiki
+```
 
-### Advanced Configuration
+Go to the project directory
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+  cd kinowiki
+```
 
-### Deployment
+Create <code>.env.local</code> file and run these commands replacing <code><<your_api_key>></code> with your own MovieDB API key:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+  echo "TMDB_API_KEY=<<your_api_key>>" > .env.local
+```
 
-### `npm run build` fails to minify
+```bash
+  echo "NEXT_PUBLIC_TMDB_API_KEY=<<your_api_key>>" >> .env.local"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+  
+<h2 id="authors">Authors</h2>
+
+- [@SamyZog](https://www.github.com/SamyZog)
+
+  
