@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Index
 
-## Available Scripts
+-   [Title](#title)
+-   [Demo](#demo)
+-   [Hosting](#host)
+-   [Motivation](#motivation)
+-   [Tech Stack / Dependencies](#deps)
+-   [Usage](#usage)
+-   [Run locally](#run)
+-   [Authors](#authors)
 
-In the project directory, you can run:
+<h2 id="title">Reactive-notifications</h2>
 
-### `npm start`
+This is a small notifications library that provides responsive universal notifications to any `React` app `v16.8.0` or
+above.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 id="demo">Demo</h2>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[Reactive-notifications](https://samyzog.github.io/reactive-notifications/)
 
-### `npm test`
+<h2 id="host">Hosting</h2>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This demo is hosted on [Github Pages](https://pages.github.com/)
 
-### `npm run build`
+<h2 id="motivation">Motivation</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I needed notifications for one of my projects, this is why I decided to build this library.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h2 id="deps">Tech Stack / Dependencies</h2>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   [React](https://reactjs.org/)
+-   [uuid](https://www.npmjs.com/package/uuid)
 
-### `npm run eject`
+<h2 id="usage">Usage</h2>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-   Wrap you App with the `NotificationsProvider` to have access to the `notify` function exported by the
+    `useNotifications` hook.
+-   The `notify` function creates a single notification instance with its own lifecycle, each notification instance can
+    be customized by passing in the following 4 arguments arguments:
+    -   `type`: string value of either `'success'`, `'error'`, `'warning'` or `'info'`.
+    -   `content`: string value of either corresponding to the message you want to output to the user.
+    -   `position`: string value of either `'tl'` (top left), `'tc'` (top center), `'tr'` (top right), `'c'` (center),
+        `'bl'` (bottom left), `'bc'` (bottom center) or `'br'` (bottom right), which defines where each notification
+        should appear on the screen. On small screens notifications will be grouped into 3 containers, top, center and
+        bottom.
+    -   `duration`: integer in milliseconds or the string keyword `'infinite'`. If passed an integer then each
+        notification will stay visible on the screen for that period of time. `'infinite'` will persist the notification
+        until closed manually. Note that in both cases the notification can be closed at any time by clicking or tapping
+        on it.
+    -   Default call for the `notify` function: `notify('info', '', 'tc', 4000)`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<h2 id="run">Run Locally</h2>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Clone the project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+  git clone https://github.com/SamyZog/reactive-notifications
+```
 
-## Learn More
+Go to the project directory
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  cd reactive-notifications
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Install dependencies
 
-### Code Splitting
+```bash
+  npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Start the server
 
-### Analyzing the Bundle Size
+```bash
+  npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<h2 id="authors">Authors</h2>
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   [@SamyZog](https://www.github.com/SamyZog)
