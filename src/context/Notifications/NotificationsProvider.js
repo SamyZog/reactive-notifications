@@ -2,16 +2,17 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import { ReactComponent as Close } from "../../assets/close.svg";
+import { getAppearAnimation, getRemoveAnimation } from "./animations";
 import styles from "./NotificationsProvider.module.css";
 import {
-	contentError,
-	durationError,
-	getAutoAnimation,
-	getCssValues,
-	getLeaveAnimation,
-	getManualAnimation,
-	positionError,
-	typeError,
+	CONTENT,
+	DURATION,
+	getDefaultContent,
+	getDefaultDuration,
+	getDefaultPosition,
+	getDefaultType,
+	POSITION,
+	TYPE,
 } from "./utility";
 
 const Notification = (props) => {
@@ -20,27 +21,23 @@ const Notification = (props) => {
 
 	useLayoutEffect(() => {
 		const isInfinite = duration === "infinite";
-		const notificationDiv = notificationRef.current;
-		const [height, margin] = getCssValues(notificationDiv, "height", "margin");
-		if (isInfinite) {
-			const { keyframes, options } = getManualAnimation(height, margin);
-			notificationDiv.animate(keyframes, options);
-		} else {
-			const { keyframes, options } = getAutoAnimation(duration, height, margin);
-			notificationDiv.animate(keyframes, options).onfinish = () => deleteNotification(id, position);
-		}
+		const notification = notificationRef.current;
+		const { keyframes, options } = getAppearAnimation(notification, duration);
+		notification.animate(keyframes, options).onfinish = () =>
+			isInfinite ? null : deleteNotification(id, position);
 	}, []);
 
 	const closeNotification = () => {
-		const notificationDiv = notificationRef.current;
-		const [height, margin] = getCssValues(notificationDiv, "height", "margin");
-		const { keyframes, options } = getLeaveAnimation(height, margin, duration);
-		notificationDiv.animate(keyframes, options).onfinish = () => deleteNotification(id, position);
+		const notification = notificationRef.current;
+		const { keyframes, options } = getRemoveAnimation(notification);
+		notification.animate(keyframes, options).onfinish = () => deleteNotification(id, position);
 	};
 
 	return (
 		<div
-			style={{ backgroundColor: `var(--${type})` }}
+			style={{
+				backgroundColor: `var(--${type})`,
+			}}
 			className={`${styles.Notification} ${styles[type]}`}
 			onClick={closeNotification}
 			ref={notificationRef}>
@@ -104,31 +101,11 @@ const NotificationsProvider = (props) => {
 		});
 	};
 
-	const notify = (type = "info", content = "", position = "tc", duration = 4000) => {
-		try {
-			typeError(type);
-		} catch (error) {
-			console.warn(error);
-			type = "info";
-		}
-		try {
-			contentError(content);
-		} catch (error) {
-			console.warn(error);
-			content = "";
-		}
-		try {
-			positionError(position);
-		} catch (error) {
-			console.warn(error);
-			position = "tc";
-		}
-		try {
-			durationError(duration);
-		} catch (error) {
-			console.warn(error);
-			duration = 4000;
-		}
+	const notify = (type = TYPE, content = CONTENT, position = POSITION, duration = DURATION) => {
+		type = getDefaultType(type);
+		content = getDefaultContent(content);
+		position = getDefaultPosition(position);
+		duration = getDefaultDuration(duration);
 
 		const id = v4();
 		const object = { id, type, content, position, deleteNotification, duration };
