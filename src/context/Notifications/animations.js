@@ -29,7 +29,7 @@ export const getRemoveAnimation = (element) => {
 
 	return {
 		keyframes: {
-			opacity: [1, 0],
+			opacity: [0],
 			height: [height, 0],
 			margin: 0,
 		},

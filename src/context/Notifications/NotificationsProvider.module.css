@@ -10,6 +10,7 @@
 	pointer-events: none;
 	z-index: 10000;
 	box-sizing: border-box;
+	min-height: -webkit-fill-available;
 }
 
 .NotificationsContainer * {
@@ -37,6 +38,7 @@
 	text-align: left;
 	line-height: 1;
 	margin: 10px 0;
+	transition-duration: 100ms;
 }
 
 .Notification::before {

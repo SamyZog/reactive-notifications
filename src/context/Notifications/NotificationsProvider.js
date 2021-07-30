@@ -17,6 +17,9 @@ import {
 
 const Notification = (props) => {
 	const { id, type, content, position, deleteNotification, duration } = props;
+	const [x, setX] = useState(0);
+	const [deltaX, setDeltaX] = useState(0);
+	const [opacity, setOpacity] = useState(1);
 	const notificationRef = useRef();
 
 	useLayoutEffect(() => {
@@ -33,13 +36,47 @@ const Notification = (props) => {
 		notification.animate(keyframes, options).onfinish = () => deleteNotification(id, position);
 	};
 
+	const handleTouchStart = (e) => {
+		const initialX = e.touches[0].clientX;
+		setX(initialX);
+	};
+
+	const handleTouchMove = (e) => {
+		const newX = e.touches[0].clientX - x;
+		setOpacity((state) => {
+			if (state < 0) {
+				return 0;
+			}
+			if (state > 1) {
+				return 0;
+			}
+			return (200 - Math.abs(newX)) / 200;
+		});
+		setDeltaX(newX);
+	};
+
+	const handleTouchEnd = () => {
+		if (Math.abs(deltaX) > 100) {
+			closeNotification();
+			return;
+		}
+		setX(0);
+		setDeltaX(0);
+		setOpacity(1);
+	};
+
 	return (
 		<div
 			style={{
 				backgroundColor: `var(--${type})`,
+				transform: `translateX(${deltaX}px)`,
+				opacity,
 			}}
 			className={`${styles.Notification} ${styles[type]}`}
 			onClick={closeNotification}
+			onTouchStart={handleTouchStart}
+			onTouchMove={handleTouchMove}
+			onTouchEnd={handleTouchEnd}
 			ref={notificationRef}>
 			<div className={styles.wrapper}>
 				{type !== "info" ? <h1 className={styles.title}>{type}</h1> : null}
