@@ -17,17 +17,18 @@ import {
 
 const Notification = (props) => {
 	const { id, type, content, position, deleteNotification, duration } = props;
+	const isInfinite = duration === "infinite";
 	const [x, setX] = useState(0);
 	const [deltaX, setDeltaX] = useState(0);
-	const [opacity, setOpacity] = useState(1);
+	const [currentAnimation, setCurrentAnimation] = useState(null);
 	const notificationRef = useRef();
 
 	useLayoutEffect(() => {
-		const isInfinite = duration === "infinite";
 		const notification = notificationRef.current;
 		const { keyframes, options } = getAppearAnimation(notification, duration);
-		notification.animate(keyframes, options).onfinish = () =>
-			isInfinite ? null : deleteNotification(id, position);
+		const animation = notification.animate(keyframes, options);
+		animation.onfinish = () => (isInfinite ? null : deleteNotification(id, position));
+		setCurrentAnimation(animation);
 	}, []);
 
 	const closeNotification = () => {
@@ -37,21 +38,13 @@ const Notification = (props) => {
 	};
 
 	const handleTouchStart = (e) => {
+		!isInfinite && currentAnimation.pause();
 		const initialX = e.touches[0].clientX;
 		setX(initialX);
 	};
 
 	const handleTouchMove = (e) => {
 		const newX = e.touches[0].clientX - x;
-		setOpacity((state) => {
-			if (state < 0) {
-				return 0;
-			}
-			if (state > 1) {
-				return 0;
-			}
-			return (200 - Math.abs(newX)) / 200;
-		});
 		setDeltaX(newX);
 	};
 
@@ -60,9 +53,9 @@ const Notification = (props) => {
 			closeNotification();
 			return;
 		}
+		!isInfinite && currentAnimation.play();
 		setX(0);
 		setDeltaX(0);
-		setOpacity(1);
 	};
 
 	return (
@@ -70,7 +63,6 @@ const Notification = (props) => {
 			style={{
 				backgroundColor: `var(--${type})`,
 				transform: `translateX(${deltaX}px)`,
-				opacity,
 			}}
 			className={`${styles.Notification} ${styles[type]}`}
 			onClick={closeNotification}
