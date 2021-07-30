@@ -38,9 +38,9 @@ I needed notifications for one of my projects, this is why I decided to build th
 -   Wrap you App with the `NotificationsProvider` to have access to the `notify` function exported by the
     `useNotifications` hook.
 -   The `notify` function creates a single notification instance with its own lifecycle, each notification instance can
-    be customized by passing in the following 4 arguments arguments:
+    be customized by passing in the following 4 arguments:
     -   `type`: string value of either `'success'`, `'error'`, `'warning'` or `'info'`.
-    -   `content`: string value of either corresponding to the message you want to output to the user.
+    -   `content`: string value corresponding to the message you want to output to the user.
     -   `position`: string value of either `'tl'` (top left), `'tc'` (top center), `'tr'` (top right), `'c'` (center),
         `'bl'` (bottom left), `'bc'` (bottom center) or `'br'` (bottom right), which defines where each notification
         should appear on the screen. On small screens notifications will be grouped into 3 containers, top, center and
