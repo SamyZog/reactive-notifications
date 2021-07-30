@@ -35,7 +35,7 @@ I needed notifications for one of my projects, this is why I decided to build th
 
 <h2 id="usage">Usage</h2>
 
--   Wrap you App with the `NotificationsProvider` to have access to the `notify` function exported by the
+-   Wrap your `App` component with the `NotificationsProvider` to have access to the `notify` function exported by the
     `useNotifications` hook.
 -   The `notify` function creates a single notification instance with its own lifecycle, each notification instance can
     be customized by passing in the following 4 arguments:
