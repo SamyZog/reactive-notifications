@@ -49,7 +49,8 @@ I needed notifications for one of my projects, this is why I decided to build th
         notification will stay visible on the screen for that period of time. `'infinite'` will persist the notification
         until closed manually. Note that in both cases the notification can be closed at any time by clicking or tapping
         on it.
-    -   Default call for the `notify` function: `notify('info', '', 'tc', 4000)`
+    -   `callBack`: a `function` that runs when a notification closes.
+    -   Default call for the `notify` function: `notify(type = 'info', content = '', position = 'tc', duration = 4000, callBack = null)`
 
 <h2 id="run">Run Locally</h2>
 
