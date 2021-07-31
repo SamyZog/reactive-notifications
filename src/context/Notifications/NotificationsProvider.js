@@ -5,8 +5,10 @@ import { ReactComponent as Close } from "../../assets/close.svg";
 import { getAppearAnimation, getRemoveAnimation } from "./animations";
 import styles from "./NotificationsProvider.module.css";
 import {
+	CALLBACK,
 	CONTENT,
 	DURATION,
+	getDefaultCallBack,
 	getDefaultContent,
 	getDefaultDuration,
 	getDefaultPosition,
@@ -16,7 +18,7 @@ import {
 } from "./utility";
 
 const Notification = (props) => {
-	const { id, type, content, position, deleteNotification, duration } = props;
+	const { id, type, content, position, deleteNotification, duration, callBack } = props;
 	const isInfinite = duration === "infinite";
 	const [x, setX] = useState(0);
 	const [deltaX, setDeltaX] = useState(0);
@@ -27,14 +29,23 @@ const Notification = (props) => {
 		const notification = notificationRef.current;
 		const { keyframes, options } = getAppearAnimation(notification, duration);
 		const animation = notification.animate(keyframes, options);
-		animation.onfinish = () => (isInfinite ? null : deleteNotification(id, position));
+		console.log(animation);
+		animation.onfinish = () => {
+			if (!isInfinite) {
+				callBack && callBack();
+				deleteNotification(id, position);
+			}
+		};
 		setCurrentAnimation(animation);
 	}, []);
 
 	const closeNotification = () => {
 		const notification = notificationRef.current;
 		const { keyframes, options } = getRemoveAnimation(notification);
-		notification.animate(keyframes, options).onfinish = () => deleteNotification(id, position);
+		notification.animate(keyframes, options).onfinish = () => {
+			callBack && callBack();
+			deleteNotification(id, position);
+		};
 	};
 
 	const handleTouchStart = (e) => {
@@ -133,14 +144,15 @@ const NotificationsProvider = (props) => {
 		});
 	};
 
-	const notify = (type = TYPE, content = CONTENT, position = POSITION, duration = DURATION) => {
+	const notify = (type = TYPE, content = CONTENT, position = POSITION, duration = DURATION, callBack = CALLBACK) => {
 		type = getDefaultType(type);
 		content = getDefaultContent(content);
 		position = getDefaultPosition(position);
 		duration = getDefaultDuration(duration);
+		callBack = getDefaultCallBack(callBack);
 
 		const id = v4();
-		const object = { id, type, content, position, deleteNotification, duration };
+		const object = { id, type, content, position, deleteNotification, duration, callBack };
 		const mobileArrayId = getMobileArrayId(position);
 
 		setNotifications((state) => {

@@ -59,8 +59,8 @@ const Controller = (props) => {
 				</h1>
 				<div className={styles.info}>
 					<p>
-						This is a small notifications library that provides beautiful, simple and responsive notifications to any{" "}
-						<code>React</code> app <code>v16.8.0</code> or above.
+						This is a small notifications library that provides beautiful, simple and responsive
+						notifications to any <code>React</code> app <code>v16.8.0</code> or above.
 					</p>
 					<div>
 						<p>To remove a notification manually, simply click, swipe or tap on it.</p>
@@ -136,6 +136,9 @@ const Controller = (props) => {
 								onClick={() => {
 									const type = getRandomType();
 									const content = getRandomtext(type);
+									const log = () => {
+										console.log("zabriye");
+									};
 									notify(type, content, "c");
 								}}>
 								center
