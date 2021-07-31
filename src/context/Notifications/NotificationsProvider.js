@@ -85,6 +85,8 @@ const notificationsContext = createContext();
 const { Provider: Notifications } = notificationsContext;
 
 const NotificationsProvider = (props) => {
+	const containerRef = useRef();
+
 	const [isMobile, setIsMobile] = useState(false);
 	const [notifications, setNotifications] = useState({
 		tl: [],
@@ -109,8 +111,9 @@ const NotificationsProvider = (props) => {
 		if (position[0] === "b") return "mbc";
 	};
 
-	const resizeHandler = (e) => {
-		const width = e.target.innerWidth;
+	const resizeHandler = () => {
+		containerRef.current.style.height = `${window.innerHeight}px`;
+		const width = window.innerWidth;
 		setIsMobile(width < 850);
 	};
 
@@ -156,7 +159,7 @@ const NotificationsProvider = (props) => {
 
 	return (
 		<Notifications value={value}>
-			<div className={styles.NotificationsContainer}>
+			<div className={styles.NotificationsContainer} ref={containerRef}>
 				{window.innerWidth < 850 || isMobile ? (
 					<>
 						<div key="mtc" className={styles.mobileTop}>
