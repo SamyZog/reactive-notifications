@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/reactive-notifications/static/css/main.54f1c9eb.chunk.css",
-    "main.js": "/reactive-notifications/static/js/main.ba9fea21.chunk.js",
-    "main.js.map": "/reactive-notifications/static/js/main.ba9fea21.chunk.js.map",
+    "main.js": "/reactive-notifications/static/js/main.a4563583.chunk.js",
+    "main.js.map": "/reactive-notifications/static/js/main.a4563583.chunk.js.map",
     "runtime-main.js": "/reactive-notifications/static/js/runtime-main.79d425cd.js",
     "runtime-main.js.map": "/reactive-notifications/static/js/runtime-main.79d425cd.js.map",
     "static/js/2.34f821cc.chunk.js": "/reactive-notifications/static/js/2.34f821cc.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.79d425cd.js",
     "static/js/2.34f821cc.chunk.js",
     "static/css/main.54f1c9eb.chunk.css",
-    "static/js/main.ba9fea21.chunk.js"
+    "static/js/main.a4563583.chunk.js"
   ]
 }
