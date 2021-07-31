@@ -29,7 +29,6 @@ const Notification = (props) => {
 		const notification = notificationRef.current;
 		const { keyframes, options } = getAppearAnimation(notification, duration);
 		const animation = notification.animate(keyframes, options);
-		console.log(animation);
 		animation.onfinish = () => {
 			if (!isInfinite) {
 				callBack && callBack();

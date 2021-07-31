@@ -51,11 +51,9 @@ export const getDefaultDuration = (duration) => {
 };
 
 export const getDefaultCallBack = (callBack) => {
-	if (typeof callBack !== "function") {
-		console.warn(
-			"The value passed for the 'callBack' argument is not a function, default value of null is applied",
-		);
-		return null;
+	if (callBack !== null && typeof callBack !== "function") {
+		console.warn(`${callBack} is not a valid value for the argument 'callBack', default value of null is applied`);
+		return CALLBACK;
 	}
 	return callBack;
 };
