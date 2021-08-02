@@ -33,7 +33,7 @@
 	cursor: pointer;
 	border-radius: 2.5px;
 	min-width: 250px;
-	width: 25vw;
+	max-width: 350px;
 	overflow: hidden;
 	text-align: left;
 	line-height: 1;
@@ -45,6 +45,7 @@
 	content: "";
 	position: absolute;
 	width: 2.5%;
+	max-width: 2.5%;
 	height: 100%;
 	top: 0;
 	left: 0;
