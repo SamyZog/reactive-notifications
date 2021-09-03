@@ -11,7 +11,7 @@
 
 <h2 id="title">Reactive-notifications</h2>
 
-This is a small notifications library that provides responsive universal notifications to any `React` app `v16.8.0` or
+A small popup library that provides beautiful, simple and responsive popup notifications to React apps `v16.8.0` or
 above.
 
 <h2 id="demo">Demo</h2>
@@ -28,7 +28,7 @@ I needed notifications for one of my projects, this is why I decided to build th
 
 <h2 id="deps">Tech Stack / Dependencies</h2>
 
--   [React](https://reactjs.org/)
+-   [react](https://reactjs.org/)
 -   [uuid](https://www.npmjs.com/package/uuid)
 
 <h2 id="usage">Usage</h2>
